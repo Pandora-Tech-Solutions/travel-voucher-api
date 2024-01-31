@@ -40,6 +40,6 @@ export class CreateUserDto {
 
   @IsArray()
   @IsNotEmpty()
-  @ApiProperty({ type: [typeof Roles] })
+  @ApiProperty({ enum: Roles, type: 'string', isArray: true })
   roles: Roles[];
 }
