@@ -30,7 +30,7 @@ export class CreateUserDto {
   password: string;
 
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ type: AddressDto })
   address: AddressDto;
 
   @IsArray()
@@ -40,15 +40,6 @@ export class CreateUserDto {
 
   @IsArray()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ type: [typeof Roles] })
   roles: Roles[];
 }
-
-// name: string;
-// cpf: string;
-// rg?: string;
-// email: string;
-// password: string;
-// address: Address;
-// roles: Roles[];
-// companies?: Company[];

@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsDate,
-  IsEmail,
-  IsNumberString,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsDate, IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class QueryDto {
   @IsOptional()
@@ -21,30 +15,20 @@ export class QueryDto {
   @IsOptional()
   @IsString()
   @ApiProperty({ required: false })
-  companyName?: string;
-
-  @IsOptional()
-  @IsString()
-  @ApiProperty({ required: false })
-  fantasyName?: string;
-
-  @IsOptional()
-  @IsString()
-  @ApiProperty({ required: false })
-  cnpj?: string;
-
-  @IsOptional()
-  @IsEmail()
-  @ApiProperty({ required: false })
-  email?: string;
+  cardNumber?: string;
 
   @IsOptional()
   @IsDate()
-  @ApiProperty({ required: false, type: Date })
+  @ApiProperty({ required: false })
+  cardExpiration?: Date;
+
+  @IsOptional()
+  @IsDate()
+  @ApiProperty({ required: false })
   dateInit?: Date;
 
   @IsOptional()
   @IsDate()
-  @ApiProperty({ required: false, type: Date })
+  @ApiProperty({ required: false })
   dateEnd?: Date;
 }

@@ -8,6 +8,7 @@ import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './features/users/users.module';
 import { CompaniesModule } from './features/companies/company.module';
+import { CardsModule } from './features/cards/card.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CompaniesModule } from './features/companies/company.module';
     }),
     UsersModule,
     CompaniesModule,
+    CardsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -24,6 +24,6 @@ export class CreateCompanyDto {
   email: string;
 
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ type: AddressDto })
   address: AddressDto;
 }
