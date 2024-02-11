@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './features/users/users.module';
 import { CompaniesModule } from './features/companies/company.module';
 import { CardsModule } from './features/cards/card.module';
+import { AuthModule } from './core/auth/auth.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { CardsModule } from './features/cards/card.module';
       },
       inject: [DatabaseConnectionService],
     }),
+    AuthModule,
     UsersModule,
     CompaniesModule,
     CardsModule,

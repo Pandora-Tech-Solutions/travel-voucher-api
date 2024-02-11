@@ -67,7 +67,13 @@ export class UsersRepository {
   }
 
   async findByEmail(email: string): Promise<User> {
-    return this.userModel.findOne({ email }).populate('companies').exec();
+    return this.userModel
+      .findOne({ email })
+      .select('+password')
+      .select('+passwordResetToken')
+      .select('+passwordResetExpires')
+      .populate('companies')
+      .exec();
   }
 
   async findById(id: string): Promise<User> {

@@ -5,5 +5,6 @@ export interface Company {
   fantasyName: string;
   cnpj: string;
   email: string;
+  phone: string;
   address: Address;
 }

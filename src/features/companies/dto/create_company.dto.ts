@@ -23,6 +23,11 @@ export class CreateCompanyDto {
   @ApiProperty()
   email: string;
 
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  phone: string;
+
   @IsNotEmpty()
   @ApiProperty({ type: AddressDto })
   address: AddressDto;

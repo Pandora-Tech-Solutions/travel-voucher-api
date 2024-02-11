@@ -9,7 +9,10 @@ export const UserSchema = new Schema({
   cpf: { type: String, required: true, unique: true },
   rg: { type: String, required: false, unique: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  phone: { type: String, required: true },
+  password: { type: String, required: true, select: false },
+  passwordResetToken: { type: String, required: false, select: false },
+  passwordResetExpires: { type: Date, required: false, select: false },
   address: {
     street: { type: String, required: true },
     number: { type: Number, required: true },
