@@ -30,7 +30,7 @@ export class CreateUserDto {
   phone: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
   password: string;
 

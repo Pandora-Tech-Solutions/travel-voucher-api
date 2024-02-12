@@ -10,7 +10,7 @@ export const UserSchema = new Schema({
   rg: { type: String, required: false, unique: true },
   email: { type: String, required: true, unique: true },
   phone: { type: String, required: true },
-  password: { type: String, required: true, select: false },
+  password: { type: String, required: false, select: false },
   passwordResetToken: { type: String, required: false, select: false },
   passwordResetExpires: { type: Date, required: false, select: false },
   address: {
