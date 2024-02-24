@@ -27,7 +27,7 @@ export class CreateCardDto {
   cardNumber: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
   userId: string;
 
