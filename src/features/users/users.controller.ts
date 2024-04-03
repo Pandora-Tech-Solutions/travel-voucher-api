@@ -20,7 +20,7 @@ import { HasRoles } from 'src/core/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/core/auth/guards/roles.guard';
 
 @ApiTags('Users')
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly user: UserService) {}
@@ -30,8 +30,8 @@ export class UsersController {
     return this.user.create(data);
   }
 
-  @HasRoles(ImportedRoles.ADMIN)
-  @UseGuards(RolesGuard)
+  // @HasRoles(ImportedRoles.ADMIN)
+  // @UseGuards(RolesGuard)
   @Get()
   findAll(@Query() query: QueryDto) {
     return this.user.findAll(query);

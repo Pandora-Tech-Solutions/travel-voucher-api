@@ -73,9 +73,9 @@ export class CardsRepository {
     return { data, total, page: +page, pages };
   }
 
-  async findByEmail(email: string): Promise<Card> {
+  async findByUserId(userId: string): Promise<Card[]> {
     return this.cardModel
-      .findOne({ email })
+      .find({ userId })
       .populate('userId')
       .populate({
         path: 'userId',

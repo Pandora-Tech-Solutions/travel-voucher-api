@@ -34,6 +34,11 @@ export class CardsController {
     return this.card.findById(id);
   }
 
+  @Get('by-user/:id')
+  findByUserId(@Param('id') id: string) {
+    return this.card.findByUserId(id);
+  }
+
   @Put(':id')
   update(@Param('id') id: string, @Body() data: UpdateCardDto) {
     return this.card.update(id, data);

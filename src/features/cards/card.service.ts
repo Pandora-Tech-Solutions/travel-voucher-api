@@ -30,9 +30,9 @@ export class CardsService {
     }
   }
 
-  async findByEmail(email: string) {
+  async findByUserId(userId: string) {
     try {
-      return this.cardRepository.findByEmail(email);
+      return this.cardRepository.findByUserId(userId);
     } catch (error) {
       throw new HttpException(
         { message: error.message },
