@@ -27,12 +27,17 @@ export class CardsRepository {
       cardNumber = '',
       dateEnd = null,
       dateInit = null,
+      onlyWithoutUser = false,
     } = options;
     const skip = (page - 1) * limit;
     let query = {};
 
     if (cardNumber) {
       query = { ...query, cardNumber: { $regex: new RegExp(cardNumber, 'i') } };
+    }
+
+    if (onlyWithoutUser) {
+      query = { ...query, userId: { $exists: false } };
     }
 
     if (cardExpiration) {
@@ -55,7 +60,7 @@ export class CardsRepository {
     }
 
     const data = await this.cardModel
-      .find(query)
+      .find({ ...query })
       .skip(skip)
       .limit(limit)
       .populate('userId')
