@@ -76,11 +76,25 @@ export class UsersRepository {
       .exec();
   }
 
+  async findByToken(token: string): Promise<User> {
+    return this.userModel.findOne({ passwordResetToken: token }).exec();
+  }
+
   async findById(id: string): Promise<User> {
     return this.userModel.findById(id).populate('companies').exec();
   }
 
   async update(id: string, data: UpdateUserDto): Promise<User> {
+    return this.userModel
+      .findOneAndUpdate({ _id: id }, data, { new: true })
+      .populate('companies')
+      .exec();
+  }
+
+  async forgotPassword(
+    id: string,
+    data: { passwordResetToken: string; passwordResetExpires: Date },
+  ): Promise<User> {
     return this.userModel
       .findOneAndUpdate({ _id: id }, data, { new: true })
       .populate('companies')

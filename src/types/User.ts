@@ -3,6 +3,7 @@ import { Company } from './Company';
 import { Roles } from './Roles';
 
 export interface User {
+  _id?: string;
   name: string;
   cpf: string;
   rg?: string;

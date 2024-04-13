@@ -18,6 +18,8 @@ import { JwtAuthGuard } from 'src/core/auth/guards/jwt.guard';
 import { Roles as ImportedRoles } from 'src/types/Roles';
 import { HasRoles } from 'src/core/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/core/auth/guards/roles.guard';
+import { ForgotPassDto } from './dto/reset-pass.dto';
+import { RedefinePassDto } from './dto/redefine-pass.dto copy';
 
 @ApiTags('Users')
 // @UseGuards(JwtAuthGuard)
@@ -50,6 +52,16 @@ export class UsersController {
   @Put(':id')
   update(@Param('id') id: string, @Body() data: UpdateUserDto) {
     return this.user.update(id, data);
+  }
+
+  @Post('forgot-password')
+  forgotPassword(@Body() data: ForgotPassDto) {
+    return this.user.forgotPassword(data.email);
+  }
+
+  @Post('reset-password')
+  resetPassword(@Body() data: RedefinePassDto) {
+    return this.user.redefinePassword(data);
   }
 
   @Delete(':id')

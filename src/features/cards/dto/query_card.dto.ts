@@ -29,6 +29,11 @@ export class QueryDto {
   cardNumber?: string;
 
   @IsOptional()
+  @IsString()
+  @ApiProperty({ required: false })
+  userId?: string;
+
+  @IsOptional()
   @IsDate()
   @ApiProperty({ required: false })
   cardExpiration?: Date;
