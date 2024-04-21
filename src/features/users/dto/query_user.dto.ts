@@ -29,6 +29,11 @@ export class QueryDto {
   cpf?: string;
 
   @IsOptional()
+  @IsString()
+  @ApiProperty({ required: false })
+  role?: string;
+
+  @IsOptional()
   @IsEmail()
   @ApiProperty({ required: false })
   email?: string;

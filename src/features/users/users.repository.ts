@@ -27,6 +27,7 @@ export class UsersRepository {
       dateEnd = null,
       dateInit = null,
       email = '',
+      role = '',
     } = options;
     const skip = (page - 1) * limit;
     let query = {};
@@ -41,6 +42,10 @@ export class UsersRepository {
 
     if (cpf) {
       query = { ...query, cpf: { $regex: new RegExp(cpf, 'i') } };
+    }
+
+    if (role) {
+      query = { ...query, roles: { $in: role } };
     }
 
     if (dateInit && dateEnd) {
