@@ -8,6 +8,7 @@ import { UpdateUserDto } from './dto/update_user.dto';
 import { QueryDto } from './dto/query_user.dto';
 import { HmacSHA512 } from 'crypto-js';
 import { RedefinePassDto } from './dto/redefine-pass.dto copy';
+import { User } from 'src/types/User';
 
 @Injectable()
 export class UserService {
@@ -18,7 +19,11 @@ export class UserService {
 
   async create(data: CreateUserDto) {
     try {
-      return this.userRepository.createUser(data);
+      const user = await this.userRepository.createUser(data);
+
+      await this.passwordResetToken(user, true);
+
+      return user;
     } catch (error) {
       throw new HttpException(
         { message: error.message },
@@ -93,27 +98,7 @@ export class UserService {
         );
       }
 
-      const data = uuidv4();
-
-      const hashData = HmacSHA512(data, process.env.PASSWORD_SALT).toString();
-
-      const now = new Date();
-      now.setHours(now.getHours() + 1);
-
-      await this.userRepository.forgotPassword(user._id, {
-        passwordResetToken: hashData,
-        passwordResetExpires: now,
-      });
-
-      await this.mailerService.sendMail({
-        to: email,
-        from: process.env.MAIL_FROM,
-        subject: 'Recupere sua senha',
-        template: 'forgot_pass',
-        html: `<h1>Recupere sua senha </h1>
-              <a href="${process.env.FRONTEND_URL}/reset-pass?token=${hashData}">Clique Aqui</a>
-        `,
-      });
+      await this.passwordResetToken(user);
 
       return new HttpException('', HttpStatus.OK);
     } catch (error) {
@@ -152,6 +137,40 @@ export class UserService {
       });
 
       return new HttpException('', HttpStatus.OK);
+    } catch (error) {
+      throw new HttpException(
+        { message: error.message },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  private async passwordResetToken(user: User, newUser = false) {
+    try {
+      const data = uuidv4();
+
+      const hashData = HmacSHA512(data, process.env.PASSWORD_SALT).toString();
+
+      const now = new Date();
+      now.setHours(now.getHours() + 1);
+
+      await this.userRepository.forgotPassword(user._id, {
+        passwordResetToken: hashData,
+        passwordResetExpires: now,
+      });
+
+      await this.mailerService.sendMail({
+        to: user.email,
+        from: process.env.MAIL_FROM,
+        subject: newUser ? 'Crie sua senha' : 'Recupere sua senha',
+        template: newUser ? 'create-pass' : 'forgot-pass',
+        context: {
+          user_name: user.name,
+          url: newUser
+            ? `${process.env.APP_URL}/create-pass?token=${hashData}`
+            : `${process.env.APP_URL}/reset-pass?token=${hashData}`,
+        },
+      });
     } catch (error) {
       throw new HttpException(
         { message: error.message },

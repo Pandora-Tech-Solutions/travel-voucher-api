@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { UserSchema } from 'src/entities/user.entity';
 import { UserService } from './users.service';
 import { UsersController } from './users.controller';
@@ -21,8 +22,8 @@ import { MailerModule } from '@nestjs-modules/mailer';
           },
         },
         template: {
-          // dir: path.resolve(__dirname, '..', 'common', 'templates'),
-          // adapter: new HandlebarsAdapter(),
+          dir: './src/templates',
+          adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
           },

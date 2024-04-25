@@ -63,6 +63,7 @@ export class UsersRepository {
       .skip(skip)
       .limit(limit)
       .populate('companies')
+      .lean()
       .exec();
 
     const total = await this.userModel.countDocuments(query).exec();
@@ -78,21 +79,23 @@ export class UsersRepository {
       .select('+passwordResetToken')
       .select('+passwordResetExpires')
       .populate('companies')
+      .lean()
       .exec();
   }
 
   async findByToken(token: string): Promise<User> {
-    return this.userModel.findOne({ passwordResetToken: token }).exec();
+    return this.userModel.findOne({ passwordResetToken: token }).lean().exec();
   }
 
   async findById(id: string): Promise<User> {
-    return this.userModel.findById(id).populate('companies').exec();
+    return this.userModel.findById(id).populate('companies').lean().exec();
   }
 
   async update(id: string, data: UpdateUserDto): Promise<User> {
     return this.userModel
       .findOneAndUpdate({ _id: id }, data, { new: true })
       .populate('companies')
+      .lean()
       .exec();
   }
 
@@ -103,6 +106,7 @@ export class UsersRepository {
     return this.userModel
       .findOneAndUpdate({ _id: id }, data, { new: true })
       .populate('companies')
+      .lean()
       .exec();
   }
 
