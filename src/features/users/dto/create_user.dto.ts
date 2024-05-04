@@ -10,14 +10,14 @@ export class CreateUserDto {
   name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
-  cpf: string;
+  cpf?: string;
 
   @IsString()
   @IsOptional()
   @ApiProperty()
-  rg: string;
+  rg?: string;
 
   @IsString()
   @IsNotEmpty()
@@ -34,14 +34,14 @@ export class CreateUserDto {
   @ApiProperty()
   password: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty({ type: AddressDto })
-  address: AddressDto;
+  address?: AddressDto;
 
   @IsArray()
   @IsOptional()
   @ApiProperty()
-  companies: string[];
+  companies?: string[];
 
   @IsArray()
   @IsNotEmpty()
