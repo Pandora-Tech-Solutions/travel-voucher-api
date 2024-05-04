@@ -6,8 +6,8 @@ import { HmacSHA512 } from 'crypto-js';
 export const UserSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, required: true, auto: true },
   name: { type: String, required: true },
-  cpf: { type: String, required: false, unique: true },
-  rg: { type: String, required: false, unique: true },
+  cpf: { type: String, required: false },
+  rg: { type: String, required: false },
   email: { type: String, required: true, unique: true },
   phone: { type: String, required: true },
   password: { type: String, required: false, select: false },
