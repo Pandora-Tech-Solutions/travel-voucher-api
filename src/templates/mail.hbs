@@ -1,0 +1,249 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+  
+  <style type="text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    .bodyAll {
+      max-width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 0;
+      background-color: #eff2f7;
+
+      position: relative;
+    }
+
+    .bodyDoc {
+      flex-direction: column;
+      max-width: 650px;
+      height: 100%;
+      min-height: 800px;
+      position: relative;
+      background-color: #ffffff;
+      border-radius: 5px;
+    }
+
+    .logo {
+      display: flex;
+      width: 100%;
+
+      padding: 32px 0;
+    }
+
+    .text{
+      display: flex;
+      flex-direction: column;
+
+      padding: 0 80px;
+    }
+
+    .title {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #000944;
+    }
+
+    .subTitle {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 18px;
+      color: #000944;
+    }
+
+    .paragraf {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      color: #333;
+      opacity: 0.8;
+    }
+
+    .description {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+    }
+
+    .textSocial {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+
+      text-align: center;
+      color: #333;
+      opacity: 0.5;
+    }
+
+    .destaque {
+      color: #000000;
+    }
+
+    .linkEmail:link {
+      background-color: transparent;
+      text-decoration: none;
+      color: #000944;
+    }
+    
+    .linkPedido {
+      background-color: transparent;
+      text-decoration: none;
+      color: #000944;
+      cursor: pointer;
+    }
+    
+    .bodyTextContact {
+      text-align: center;
+      padding: 2% 40%;
+    }
+
+    .body-info {
+      background: #49c2c720;
+      margin-top: 16px;
+      padding: 5% 10%;
+    }
+
+    .body-title {
+      margin-left: 80px;
+
+      font-family: 'Open Sans', sans-serif;
+      font-size: 19px;
+      font-weight: bold;
+      color: #000944;
+    }
+
+    .body-contact {
+      display: flex;
+      flex-direction: column;
+
+    }
+
+    .adv {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 17px;
+      color: #000944;
+
+      margin-bottom: 6px;
+    }
+
+    .body-icons {
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
+
+      margin-left: 80px;
+    }
+
+    .button {
+      display: flex;
+      max-width:190px;
+      /* height: 40px; */
+
+      padding: 8px 24px;
+
+      border: solid 1px #000944;
+      border-radius: 10px;
+
+      margin-top: 16px;
+      margin-bottom: 16px;
+
+      color: #000944;
+
+      font-family: 'Open Sans', sans-serif;
+      font-size: 17px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .link {
+      text-decoration: none;
+      color: #000944;
+    }
+  </style>
+</head>
+
+<body style="background-color: #eff2f7;font-family: 'Open Sans', sans-serif;color: #132552;padding: 5%;">
+  <div class="container" style="margin: 0 auto;background-color: #FFF;border-radius: 8px;width: 720px;">
+    <div class="footer" style="padding: 32px 0">
+      <table style="width: 100%;">
+        <tr>
+          <td rowspan="3">
+            <center>
+              <a href="laiketurismo.com.br">
+                <img 
+                  src="https://play-lh.googleusercontent.com/g1ho57pvpH8RgAdHK20LeozUtZvF0YYWYm3mhdvSLM_kL_JAaj2DL4KCyM0rHdADOWw" 
+                  style=" height: 200px;margin: 0 auto 0;"
+                >
+              </a>
+            </center>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="header" style="padding-top: 5%;padding-left: 10%;padding-right: 10%;">
+      <p class="paragraf" style="line-height: 24px; font-size: 18px;">
+        O cliente <strong>{{ name }}</strong>, entrou em contato para saber sobre:</p>
+      </p>
+    </div>
+
+    <div class="body-info">
+      <span class="subTitle">
+        {{ title }}
+      </span>
+      <p class="paragraf" style="margin-top:8px;">
+        {{ message }}
+      </p>
+
+      <span class="subTitle" style="margin-top: 40px;">
+        Dados para contato:
+      </span>
+      <p class="paragraf" style="margin-bottom: 0; line-height: 24px;">
+        E-mail: {{mail}}
+      </p>
+      <p class="paragraf" style="margin-bottom: 0; line-height: 24px;">
+        Telefone / Whatsapp: {{ phone }}
+      </p>
+
+    <div style="padding: 24px 0; text-align: center;">
+      <p class="adv">LAIKE TURISMO</p>
+      <span class="adv" style="font-size: 16px;">
+        <a href="https://laiketurismo.com.br/" class="link" target="_blank">laiketurismo.com.br</a>
+      </span>
+    </div>
+  </div>
+  <div class="footer">
+    <table style="width: 100%; padding-top: 32px; padding-bottom: 16px; text-align: center;">
+      <tr>
+        <td>
+          <p class="textSocial">
+            SIGA NAS REDES
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div>
+            <a href="https://www.facebook.com/laiketurismo" target="_blank" style="text-decoration: none;">
+              <img src="cid:social-facebook">
+            </a>
+            <a href="https://www.youtube.com/watch?v=ujf7dI-7uqs" target="_blank" style="text-decoration: none;">
+              <img src="cid:social-youtube">
+            </a>
+            <a href="https://www.instagram.com/laiketurismo_/" target="_blank" style="text-decoration: none;">
+              <img src="cid:social-instagram">
+            </a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

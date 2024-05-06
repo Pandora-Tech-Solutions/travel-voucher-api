@@ -10,6 +10,7 @@ import { UsersModule } from './features/users/users.module';
 import { CompaniesModule } from './features/companies/company.module';
 import { CardsModule } from './features/cards/card.module';
 import { AuthModule } from './core/auth/auth.module';
+import { MailsModule } from './features/mails/mails.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { AuthModule } from './core/auth/auth.module';
     UsersModule,
     CompaniesModule,
     CardsModule,
+    MailsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
