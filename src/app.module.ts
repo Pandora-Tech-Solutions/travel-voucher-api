@@ -11,6 +11,8 @@ import { CompaniesModule } from './features/companies/company.module';
 import { CardsModule } from './features/cards/card.module';
 import { AuthModule } from './core/auth/auth.module';
 import { MailsModule } from './features/mails/mails.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 @Module({
   imports: [
@@ -23,11 +25,29 @@ import { MailsModule } from './features/mails/mails.module';
       useFactory: (database: DatabaseConnectionService) => {
         return <MongooseModuleOptions>{
           uri: database.get(),
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
         };
       },
       inject: [DatabaseConnectionService],
+    }),
+    MailerModule.forRootAsync({
+      useFactory: () => ({
+        //Mailtrap's user and password
+        transport: {
+          host: 'mail.laiketurismo.com.br',
+          port: 465,
+          auth: {
+            user: process.env.MAIL_LOGIN,
+            pass: process.env.MAIL_PASS,
+          },
+        },
+        template: {
+          dir: './src/templates',
+          adapter: new HandlebarsAdapter(),
+          options: {
+            strict: true,
+          },
+        },
+      }),
     }),
     AuthModule,
     UsersModule,

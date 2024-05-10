@@ -1,36 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { UserSchema } from 'src/entities/user.entity';
 import { UserService } from './users.service';
 import { UsersController } from './users.controller';
 import { UsersRepository } from './users.repository';
-import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
-    MailerModule.forRootAsync({
-      useFactory: () => ({
-        //Mailtrap's user and password
-        transport: {
-          host: 'smtp.mailtrap.io',
-          port: 2525,
-          auth: {
-            user: 'eca53d965bb31b',
-            pass: '5bf7e1a96d6bf3',
-          },
-        },
-        template: {
-          dir: './src/templates',
-          adapter: new HandlebarsAdapter(),
-          options: {
-            strict: true,
-          },
-        },
-      }),
-    }),
-  ],
+  imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
   providers: [UserService, UsersRepository],
   controllers: [UsersController],
   exports: [UserService],

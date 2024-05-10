@@ -25,11 +25,10 @@ export class MailsService {
 
   async sendMail(mail): Promise<any> {
     const data = await this.mailerService.sendMail({
-      to: process.env.ADVANCED_MAIL_TO,
-      cc: ['contato@advancedcorretora.com.br'],
+      to: process.env.MAIL_TO,
       from: {
-        name: 'Advanced Corretora de Câmbio',
-        address: process.env.ADVANCED_MAIL_FROM,
+        name: 'Laike Turismo | Vale Viagem',
+        address: process.env.MAIL_FROM,
       },
       subject: 'Contato sobre Vale Viagem',
       template: './mail',
